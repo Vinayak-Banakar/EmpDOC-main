@@ -83,10 +83,7 @@ export default function EmployeeTable({ onEdit }: { onEdit: (emp: EmployeeRow) =
                 <TableCell className="font-medium">{r.name}</TableCell>
                 <TableCell>{new Date(r.dateOfJoining).toLocaleDateString()}</TableCell>
                 <TableCell>{r.experienceYears}y ({r.experienceMonths}m)</TableCell>
-                <TableCell>
-  {r.salary.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}
-</TableCell>
-
+                <TableCell>${r.salary.toLocaleString()}</TableCell>
                 <TableCell className="space-x-2">
                   <Button variant="secondary" size="sm" onClick={() => onEdit(r)}>Edit</Button>
                   {user?.role === "HR" && (

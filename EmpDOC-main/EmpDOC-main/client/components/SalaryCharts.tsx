@@ -5,7 +5,6 @@ import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip as RTooltip,
 
 export default function SalaryCharts() {
   const [data, setData] = useState<{ avgSalary: number; maxSalary: number; distribution: { label: string; count: number }[] } | null>(null);
-
   useEffect(() => {
     api.get("/dashboard/salary").then((res) => setData(res.data));
   }, []);
@@ -19,23 +18,17 @@ export default function SalaryCharts() {
           <CardTitle>Average Salary</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-3xl font-bold">
-            {data.avgSalary.toLocaleString('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0 })}
-          </p>
+          <p className="text-3xl font-bold">${data.avgSalary.toFixed(0)}</p>
         </CardContent>
       </Card>
-
       <Card>
         <CardHeader>
           <CardTitle>Highest Salary</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-3xl font-bold">
-            {data.maxSalary.toLocaleString('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0 })}
-          </p>
+          <p className="text-3xl font-bold">${data.maxSalary.toFixed(0)}</p>
         </CardContent>
       </Card>
-
       <Card className="lg:col-span-1 lg:row-span-1 lg:col-start-1 lg:row-start-2">
         <CardHeader>
           <CardTitle>Distribution by Experience</CardTitle>
